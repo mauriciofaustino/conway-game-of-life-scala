@@ -1,19 +1,15 @@
 class GameOfLife(board: Array[Array[Cell]]) {
-  val NEIGHBORS = Array(
+  private val NEIGHBORS = Array(
     (-1, -1),(-1, 0),(-1, 1),
     ( 0, -1),        ( 0, 1),
     ( 1, -1),(+1, 0),( 1, 1)
   )
 
-  def getNeighbors(row: Int, column: Int): Array[Cell] = {
-    NEIGHBORS
-      .map(position => (position._1+row, position._2+column))
-         .filter(position => position._1 > 0 && position._1 < board.length
-           && position._2 > 0 && position._2 < board(position._1).length)
-        .map(position => board(position._1)(position._2))
-  }
+  def getBoard: Array[Array[Cell]] = board
 
-  def nextGeneration() = {
+  def resurrect(positions: (Int, Int)*): Unit = positions.foreach(position => board(position._1)(position._2).resurrect())
+
+  def nextGeneration(): Unit = {
     for {
       row <- board.indices
       column <- board(row).indices
@@ -24,13 +20,21 @@ class GameOfLife(board: Array[Array[Cell]]) {
     }
   }
 
-  def resurrect(positions: (Int, Int)*) = positions.foreach(position => board(position._1)(position._2).resurrect())
+  private def getNeighbors(row: Int, column: Int): Array[Cell] = {
+    NEIGHBORS
+      .map(position => (position._1+row, position._2+column))
+         .filter(position => isValidPosition(position))
+         .map(position => board(position._1)(position._2))
+  }
 
-  def getBoard = board
+  private def isValidPosition(position: (Int, Int)) = {
+    position._1 > 0 && position._1 < board.length && position._2 > 0 && position._2 < board(position._1).length
+  }
+
 }
 
 object GameOfLife {
-  def apply(rows: Int, columns: Int) = {
+  def apply(rows: Int, columns: Int): GameOfLife = {
     val board = Array.ofDim[Cell](rows, columns)
     for {
       row <- 0 until rows
