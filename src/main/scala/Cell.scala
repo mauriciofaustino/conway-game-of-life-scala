@@ -1,6 +1,6 @@
-class Cell(var alive: Boolean) {
+class Cell(var isAlive: Boolean) {
   def checkNeighbors(neighbors: Cell*) = {
-    val livingNeighbors = neighbors.count(_.alive)
-    alive = (alive && livingNeighbors >= 2 && livingNeighbors <= 3) || (!alive && livingNeighbors == 3)
+    val livingNeighbors = neighbors.count(_.isAlive)
+    isAlive = (isAlive && livingNeighbors >= 2 && livingNeighbors <= 3) || (!isAlive && livingNeighbors == 3)
   }
 }

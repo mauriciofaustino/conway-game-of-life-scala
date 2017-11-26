@@ -13,7 +13,7 @@ class CellSpec extends FlatSpec with Matchers {
 
     cell.checkNeighbors(neighbors:_*)
 
-    cell.alive shouldBe false
+    cell.isAlive shouldBe false
   }
 
   "Living cell" should "keep alive if it has 2 living neighbors" in {
@@ -27,7 +27,7 @@ class CellSpec extends FlatSpec with Matchers {
 
     cell.checkNeighbors(neighbors:_*)
 
-    cell.alive shouldBe true
+    cell.isAlive shouldBe true
   }
 
   "Living cell" should "keep alive if it has 3 living neighbors" in {
@@ -41,7 +41,7 @@ class CellSpec extends FlatSpec with Matchers {
 
     cell.checkNeighbors(neighbors:_*)
 
-    cell.alive shouldBe true
+    cell.isAlive shouldBe true
   }
 
   "Living cell" should "die if it has more than 3 living neighbors" in {
@@ -55,7 +55,7 @@ class CellSpec extends FlatSpec with Matchers {
 
     cell.checkNeighbors(neighbors:_*)
 
-    cell.alive shouldBe false
+    cell.isAlive shouldBe false
   }
 
   "Died cell" should "lives if it has exact 3 living neighbors" in {
@@ -69,6 +69,6 @@ class CellSpec extends FlatSpec with Matchers {
 
     cell.checkNeighbors(neighbors:_*)
 
-    cell.alive shouldBe true
+    cell.isAlive shouldBe true
   }
 }
