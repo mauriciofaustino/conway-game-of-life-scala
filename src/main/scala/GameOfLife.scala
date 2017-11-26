@@ -1,4 +1,8 @@
 class GameOfLife(board: Array[Array[Cell]]) {
+  def resurrect(position: (Int, Int)) = {
+    board(position._1)(position._2).resurrect()
+  }
+
   def getBoard = board
 }
 
