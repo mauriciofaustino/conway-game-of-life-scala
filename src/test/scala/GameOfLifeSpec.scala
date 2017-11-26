@@ -58,4 +58,22 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_*_\n"
   }
 
+  "Living cell" should "die if it has more than 3 living neighbors" in {
+    val game = GameOfLife(2, 3)
+    game.resurrect(
+      (0,0),(0,1),(0,2),
+            (1,1),(1,2)
+    )
+
+    game.toString shouldBe "\n"+
+      "***\n"+
+      "_**\n"
+
+    game.nextGeneration()
+
+    game.toString shouldBe "\n"+
+      "*_*\n"+
+      "*_*\n"
+  }
+
 }
