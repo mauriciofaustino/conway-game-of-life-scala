@@ -58,6 +58,12 @@ class CellSpec extends FlatSpec with Matchers {
     cell.isAlive shouldBe false
   }
 
+  "Living cell" should "be * in string" in {
+    val cell = new Cell(true)
+
+    cell.toString shouldBe "*"
+  }
+
   "Died cell" should "lives if it has exact 3 living neighbors" in {
     val cell = new Cell(false)
     val neighbors: Array[Cell] =  Array(
@@ -70,5 +76,11 @@ class CellSpec extends FlatSpec with Matchers {
     cell.checkNeighbors(neighbors:_*)
 
     cell.isAlive shouldBe true
+  }
+
+  "Died cell" should "be _ in string" in {
+    val cell = new Cell(false)
+
+    cell.toString shouldBe "_"
   }
 }

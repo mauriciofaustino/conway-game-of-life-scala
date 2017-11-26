@@ -3,4 +3,7 @@ class Cell(var isAlive: Boolean) {
     val livingNeighbors = neighbors.count(_.isAlive)
     isAlive = (isAlive && livingNeighbors >= 2 && livingNeighbors <= 3) || (!isAlive && livingNeighbors == 3)
   }
+  override def toString: String = {
+    if (isAlive) "*" else "_"
+  }
 }
