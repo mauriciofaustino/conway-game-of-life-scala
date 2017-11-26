@@ -11,9 +11,9 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    cell.checkNeighbors(neighbors:_*)
+    var result = cell.checkNeighbors(neighbors:_*)
 
-    cell.isAlive shouldBe false
+    result.isAlive shouldBe false
   }
 
   "Living cell" should "keep alive if it has 2 living neighbors" in {
@@ -25,9 +25,9 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    cell.checkNeighbors(neighbors:_*)
+    var result = cell.checkNeighbors(neighbors:_*)
 
-    cell.isAlive shouldBe true
+    result.isAlive shouldBe true
   }
 
   "Living cell" should "keep alive if it has 3 living neighbors" in {
@@ -39,9 +39,9 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    cell.checkNeighbors(neighbors:_*)
+    var result = cell.checkNeighbors(neighbors:_*)
 
-    cell.isAlive shouldBe true
+    result.isAlive shouldBe true
   }
 
   "Living cell" should "die if it has more than 3 living neighbors" in {
@@ -53,9 +53,9 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    cell.checkNeighbors(neighbors:_*)
+    var result = cell.checkNeighbors(neighbors:_*)
 
-    cell.isAlive shouldBe false
+    result.isAlive shouldBe false
   }
 
   "Living cell" should "be * in string" in {
@@ -73,9 +73,9 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    cell.checkNeighbors(neighbors:_*)
+    var result = cell.checkNeighbors(neighbors:_*)
 
-    cell.isAlive shouldBe true
+    result.isAlive shouldBe true
   }
 
   "Died cell" should "be _ in string" in {
