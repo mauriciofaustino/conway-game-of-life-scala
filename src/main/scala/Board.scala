@@ -16,14 +16,14 @@ case class Board(board: Array[Array[Cell]]) {
     NEIGHBORS
       .map(position => (position._1+row, position._2+column))
       .filter(position => isValidPosition(position))
-      .map(position => board(position._1)(position._2))
+      .map(position => getCellFrom(position._1, position._2))
   }
 
   private def isValidPosition(position: (Int, Int)) = {
     position._1 >= 0 &&
-      position._1 < board.length &&
+      position._1 < rows &&
       position._2 >= 0 &&
-      position._2 < board(position._1).length
+      position._2 < columns
   }
 
   override def toString: String = {
@@ -32,9 +32,8 @@ case class Board(board: Array[Array[Cell]]) {
       row <- board.indices
       column <- board(row).indices
     } yield {
-      val cell = board(row)(column)
-      result.append(cell)
-      if(column == board(row).length-1) result.append("\n")
+      result.append(getCellFrom(row,column))
+      if(column == columns-1) result.append("\n")
     }
     result.toString
   }
