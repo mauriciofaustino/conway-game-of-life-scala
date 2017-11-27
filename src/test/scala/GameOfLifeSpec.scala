@@ -24,7 +24,7 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_*___\n"
   }
 
-  "Living cell" should "die with less than 2 living neighbors" in {
+  it should "die with less than 2 living neighbors" in {
     val game = GameOfLife(5, 5, alivePositions = (1,1))
 
     game.toString shouldBe "\n"+
@@ -44,7 +44,7 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_____\n"
   }
 
-  "Living cell" should "keep alive if it has 2 living neighbors" in {
+  it should "keep alive if it has 2 living neighbors" in {
     val game = GameOfLife(1, 3, alivePositions = (0,0),(0,1),(0,2))
 
     game.toString shouldBe "\n"+
@@ -56,7 +56,7 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_*_\n"
   }
 
-  "Living cell" should "die if it has more than 3 living neighbors" in {
+  it should "die if it has more than 3 living neighbors" in {
     val game = GameOfLife(2, 3, alivePositions = (0,0),(0,1),(0,2),(1,1),(1,2))
 
     game.toString shouldBe "\n"+

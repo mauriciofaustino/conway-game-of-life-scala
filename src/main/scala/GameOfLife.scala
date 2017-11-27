@@ -20,14 +20,13 @@ class GameOfLife(var board: Array[Array[Cell]]) {
   }
 
   override def toString: String = {
-    val result = new StringBuilder()
-    result.append("\n")
+    val result = new StringBuilder("\n")
     for {
       row <- board.indices
       column <- board(row).indices
     } yield {
       val cell = board(row)(column)
-      result.append(cell.toString)
+      result.append(cell)
       if(column == board(row).length-1) result.append("\n")
     }
     result.toString
@@ -41,7 +40,10 @@ class GameOfLife(var board: Array[Array[Cell]]) {
   }
 
   private def isValidPosition(position: (Int, Int)) = {
-    position._1 >= 0 && position._1 < board.length && position._2 >= 0 && position._2 < board(position._1).length
+    position._1 >= 0 &&
+      position._1 < board.length &&
+      position._2 >= 0 &&
+      position._2 < board(position._1).length
   }
 
 }
