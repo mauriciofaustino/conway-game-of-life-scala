@@ -1,62 +1,19 @@
-class GameOfLife(var board: Array[Array[Cell]]) {
+class GameOfLife() {
 
-  private val NEIGHBORS = Array(
-    (-1, -1),(-1, 0),(-1, 1),
-    ( 0, -1),        ( 0, 1),
-    ( 1, -1),(+1, 0),( 1, 1)
-  )
-
-  def nextGeneration(): Unit = {
-    val newBoard = Array.ofDim[Cell](board.length, board(0).length)
+  def nextGeneration(board: Board): Board = {
+    val alivePositions = scala.collection.mutable.SortedSet[(Int, Int)]()
     for {
-      row <- board.indices
-      column <- board(row).indices
+      row <- 0 until board.rows
+      column <- 0 until board.columns
     } yield {
-      val cell = board(row)(column)
-      val neighbors = getNeighbors(row,column)
-      newBoard(row)(column) = cell.checkNeighbors(neighbors:_*)
+      val cell = board.getCellFrom(row,column)
+      val neighbors = board.getNeighborsFrom(row,column)
+      if(cell.willSurvive(neighbors:_*)) {
+        val alivePosition: (Int, Int) = (row, column)
+        alivePositions += alivePosition
+      }
     }
-    board = newBoard
+    Board(board.rows, board.columns, alivePositions.toArray:_*)
   }
 
-  override def toString: String = {
-    val result = new StringBuilder("\n")
-    for {
-      row <- board.indices
-      column <- board(row).indices
-    } yield {
-      val cell = board(row)(column)
-      result.append(cell)
-      if(column == board(row).length-1) result.append("\n")
-    }
-    result.toString
-  }
-
-  private def getNeighbors(row: Int, column: Int): Array[Cell] = {
-    NEIGHBORS
-      .map(position => (position._1+row, position._2+column))
-      .filter(position => isValidPosition(position))
-      .map(position => board(position._1)(position._2))
-  }
-
-  private def isValidPosition(position: (Int, Int)) = {
-    position._1 >= 0 &&
-      position._1 < board.length &&
-      position._2 >= 0 &&
-      position._2 < board(position._1).length
-  }
-
-}
-
-object GameOfLife {
-  def apply(rows: Int, columns: Int, alivePositions: (Int, Int)*): GameOfLife = {
-    val board = Array.ofDim[Cell](rows, columns)
-    for {
-      row <- 0 until rows
-      col <- 0 until columns
-    } yield {
-      board(row)(col) = new Cell(alivePositions.contains((row,col)))
-    }
-    new GameOfLife(board)
-  }
 }

@@ -11,9 +11,8 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    var result = cell.checkNeighbors(neighbors:_*)
 
-    result.isAlive shouldBe false
+    cell.willSurvive(neighbors:_*) shouldBe false
   }
 
   it should "keep alive if it has 2 living neighbors" in {
@@ -25,9 +24,7 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    var result = cell.checkNeighbors(neighbors:_*)
-
-    result.isAlive shouldBe true
+    cell.willSurvive(neighbors:_*) shouldBe true
   }
 
   it should "keep alive if it has 3 living neighbors" in {
@@ -39,9 +36,7 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    var result = cell.checkNeighbors(neighbors:_*)
-
-    result.isAlive shouldBe true
+    cell.willSurvive(neighbors:_*) shouldBe true
   }
 
   it should "die if it has more than 3 living neighbors" in {
@@ -53,9 +48,7 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    var result = cell.checkNeighbors(neighbors:_*)
-
-    result.isAlive shouldBe false
+    cell.willSurvive(neighbors:_*) shouldBe false
   }
 
   it should "resurrect if it has exact 3 living neighbors" in {
@@ -67,12 +60,8 @@ class CellSpec extends FlatSpec with Matchers {
       new Cell(false),new Cell(false)
     )
 
-    var result = cell.checkNeighbors(neighbors:_*)
-
-    result.isAlive shouldBe true
+    cell.willSurvive(neighbors:_*) shouldBe true
   }
-
-
 
   it should "be * in string when it's alive" in {
     val cell = new Cell(true)
