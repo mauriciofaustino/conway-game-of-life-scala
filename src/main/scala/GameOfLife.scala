@@ -6,8 +6,6 @@ class GameOfLife(var board: Array[Array[Cell]]) {
     ( 1, -1),(+1, 0),( 1, 1)
   )
 
-  def resurrect(positions: (Int, Int)*): Unit = positions.foreach(position => board(position._1)(position._2).resurrect())
-
   def nextGeneration(): Unit = {
     val newBoard = Array.ofDim[Cell](board.length, board(0).length)
     for {
@@ -49,13 +47,13 @@ class GameOfLife(var board: Array[Array[Cell]]) {
 }
 
 object GameOfLife {
-  def apply(rows: Int, columns: Int): GameOfLife = {
+  def apply(rows: Int, columns: Int, alivePositions: (Int, Int)*): GameOfLife = {
     val board = Array.ofDim[Cell](rows, columns)
     for {
       row <- 0 until rows
       col <- 0 until columns
     } yield {
-      board(row)(col) = new Cell(false)
+      board(row)(col) = new Cell(alivePositions.contains((row,col)))
     }
     new GameOfLife(board)
   }

@@ -9,6 +9,4 @@ class Cell(var isAlive: Boolean) {
     if (isAlive) "*" else "_"
   }
 
-  def resurrect(): Unit = isAlive = true
-
 }
