@@ -34,7 +34,7 @@ class BoardSpec extends FlatSpec with Matchers {
       "___\n"+
       "_*_"
 
-    val neighbors: Array[Cell] = board.getNeighborsFrom(1,1)
+    val neighbors: Seq[Cell] = board.getNeighborsFrom(1,1)
 
     neighbors.length shouldBe 8
     neighbors.count(_.isAlive) shouldBe 2
@@ -47,7 +47,7 @@ class BoardSpec extends FlatSpec with Matchers {
       "___\n"+
       "_*_"
 
-    val neighbors: Array[Cell] = board.getNeighborsFrom(1,0)
+    val neighbors: Seq[Cell] = board.getNeighborsFrom(1,0)
 
     neighbors.length shouldBe 5
     neighbors.count(_.isAlive) shouldBe 2
@@ -58,7 +58,7 @@ class BoardSpec extends FlatSpec with Matchers {
     board.toString shouldBe "\n"+
       "_*"
 
-    val neighbors: Array[Cell] = board.getNeighborsFrom(0,0)
+    val neighbors: Seq[Cell] = board.getNeighborsFrom(0,0)
 
     neighbors.length shouldBe 1
     neighbors.count(_.isAlive) shouldBe 1

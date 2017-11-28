@@ -1,5 +1,5 @@
 case class Board(board: Array[Array[Cell]]) {
-  private val NEIGHBORS = Array(
+  private val NEIGHBORS = Seq(
     (-1, -1),(-1, 0),(-1, 1),
     ( 0, -1),        ( 0, 1),
     ( 1, -1),(+1, 0),( 1, 1)
@@ -12,7 +12,7 @@ case class Board(board: Array[Array[Cell]]) {
     board(row)(column)
   }
 
-  def getNeighborsFrom(row: Int, column: Int): Array[Cell] = {
+  def getNeighborsFrom(row: Int, column: Int): Seq[Cell] = {
     NEIGHBORS
       .map   { case (neighborRow, neighborColumn) => (neighborRow+row, neighborColumn+column) }
       .filter{ case (neighborRow, neighborColumn) => isValidPosition(neighborRow,neighborColumn) }
