@@ -13,6 +13,13 @@ case class Board(rows: Int, columns: Int, alivePositions: (Int, Int)*) {
     board
   }
 
+  def positions(): Seq[(Int, Int)] = {
+    for {
+      row <- 0 until rows
+      column <- 0 until columns
+    } yield (row,column)
+  }
+
   def getCellFrom(row: Int, column: Int): Cell = {
     board(row)(column)
   }
@@ -22,13 +29,6 @@ case class Board(rows: Int, columns: Int, alivePositions: (Int, Int)*) {
       .map   { case (neighborRow, neighborColumn) => (neighborRow+row, neighborColumn+column) }
       .filter{ case (neighborRow, neighborColumn) => isValidPosition(neighborRow,neighborColumn) }
       .map   { case (neighborRow, neighborColumn) => getCellFrom(neighborRow, neighborColumn) }
-  }
-
-  def positions(): Seq[(Int, Int)] = {
-    for {
-      row <- 0 until rows
-      column <- 0 until columns
-    } yield (row,column)
   }
 
   private def isValidPosition(row: Int, column: Int): Boolean = {
