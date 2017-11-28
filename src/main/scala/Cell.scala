@@ -1,4 +1,4 @@
-class Cell(var isAlive: Boolean) {
+class Cell(val isAlive: Boolean) {
 
   def willSurvive(neighbors: Cell*): Boolean = {
     val livingNeighbors = neighbors.count(_.isAlive)

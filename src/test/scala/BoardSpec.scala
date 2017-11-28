@@ -64,4 +64,30 @@ class BoardSpec extends FlatSpec with Matchers {
     neighbors.count(_.isAlive) shouldBe 1
   }
 
+  it should "provide positions of a 1x1 board" in {
+    val board = Board(1, 1)
+
+    val positions = board.positions()
+
+    positions shouldBe Seq((0,0))
+  }
+
+  it should "provide positions of a 1x2 board" in {
+    val board = Board(1, 2)
+
+    val positions = board.positions()
+
+    positions shouldBe Seq((0,0),(0,1))
+  }
+
+  it should "provide positions of a 3x3 board" in {
+    val board = Board(3, 3)
+
+    val positions = board.positions()
+
+    positions shouldBe Seq((0,0),(0,1),(0,2),
+                              (1,0),(1,1),(1,2),
+                              (2,0),(2,1),(2,2))
+  }
+
 }
