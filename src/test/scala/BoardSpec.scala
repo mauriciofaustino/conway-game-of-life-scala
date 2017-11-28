@@ -12,7 +12,7 @@ class BoardSpec extends FlatSpec with Matchers {
       "_____\n"+
       "_____\n"+
       "_____\n"+
-      "_____\n"
+      "_____"
   }
 
   it should "create a 5x5 board with some alive cell" in {
@@ -24,7 +24,7 @@ class BoardSpec extends FlatSpec with Matchers {
       "_*___\n"+
       "___*_\n"+
       "_____\n"+
-      "_*___\n"
+      "_*___"
   }
 
   it should "provide 8 neighbors" in {
@@ -32,7 +32,7 @@ class BoardSpec extends FlatSpec with Matchers {
     board.toString shouldBe "\n"+
       "_*_\n"+
       "___\n"+
-      "_*_\n"
+      "_*_"
 
     val neighbors: Array[Cell] = board.getNeighborsFrom(1,1)
 
@@ -45,7 +45,7 @@ class BoardSpec extends FlatSpec with Matchers {
     board.toString shouldBe "\n"+
       "_*_\n"+
       "___\n"+
-      "_*_\n"
+      "_*_"
 
     val neighbors: Array[Cell] = board.getNeighborsFrom(1,0)
 
@@ -56,7 +56,7 @@ class BoardSpec extends FlatSpec with Matchers {
   it should "provide 1 neighbors\"" in {
     val board = Board(1, 2, alivePositions=(0,1))
     board.toString shouldBe "\n"+
-      "_*\n"
+      "_*"
 
     val neighbors: Array[Cell] = board.getNeighborsFrom(0,0)
 

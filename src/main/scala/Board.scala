@@ -34,13 +34,11 @@ case class Board(board: Array[Array[Cell]]) {
   }
 
   override def toString: String = {
-    val result = new StringBuilder("\n")
-    positions().map {
-      case(row, column) => {
-        result.append(getCellFrom(row,column))
-        if(column == columns-1) result.append("\n")
-      }
-    }
+    val result = new StringBuilder()
+    board.foreach( row => {
+      result.append("\n")
+      row.foreach( cell => result.append(cell))
+    })
     result.toString
   }
 

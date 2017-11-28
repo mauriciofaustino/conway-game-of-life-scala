@@ -9,7 +9,7 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_*___\n"+
       "_____\n"+
       "_____\n"+
-      "_____\n"
+      "_____"
 
     val newBoard = new GameOfLife().nextGeneration(board)
 
@@ -18,7 +18,7 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
       "_____\n"+
       "_____\n"+
       "_____\n"+
-      "_____\n"
+      "_____"
   }
 
   it should "keep alive if it has 2 living neighbors" in {
@@ -26,12 +26,12 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
     val board = Board(1, 3, alivePositions = (0,0),(0,1),(0,2))
 
     board.toString shouldBe "\n"+
-      "***\n"
+      "***"
 
     val newBoard = new GameOfLife().nextGeneration(board)
 
     newBoard.toString shouldBe "\n"+
-      "_*_\n"
+      "_*_"
   }
 
   it should "die if it has more than 3 living neighbors" in {
@@ -39,13 +39,13 @@ class GameOfLifeSpec extends FlatSpec with Matchers {
 
     board.toString shouldBe "\n"+
       "***\n"+
-      "_**\n"
+      "_**"
 
     val newBoard = new GameOfLife().nextGeneration(board)
 
     newBoard.toString shouldBe "\n"+
       "*_*\n"+
-      "*_*\n"
+      "*_*"
   }
 
 }
