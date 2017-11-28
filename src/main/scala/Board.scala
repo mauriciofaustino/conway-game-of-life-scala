@@ -1,12 +1,17 @@
-case class Board(board: Array[Array[Cell]]) {
+case class Board(rows: Int, columns: Int, alivePositions: (Int, Int)*) {
   private val NEIGHBORS = Seq(
     (-1, -1),(-1, 0),(-1, 1),
     ( 0, -1),        ( 0, 1),
     ( 1, -1),(+1, 0),( 1, 1)
   )
 
-  val rows: Int = board.length
-  val columns: Int = board(0).length
+  private val board: Array[Array[Cell]] = {
+    val board = Array.ofDim[Cell](rows, columns)
+    positions().foreach {
+      case (row, column) => board(row)(column) = Cell(alivePositions.contains((row,column)))
+    }
+    board
+  }
 
   def getCellFrom(row: Int, column: Int): Cell = {
     board(row)(column)
@@ -42,17 +47,4 @@ case class Board(board: Array[Array[Cell]]) {
     result.toString
   }
 
-}
-
-object Board {
-  def apply(rows: Int, columns: Int, alivePositions: (Int, Int)*): Board = {
-    val board = Array.ofDim[Cell](rows, columns)
-    for {
-      row <- 0 until rows
-      col <- 0 until columns
-    } yield {
-      board(row)(col) = new Cell(alivePositions.contains((row,col)))
-    }
-    new Board(board)
-  }
 }
